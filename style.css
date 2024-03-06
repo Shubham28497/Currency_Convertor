@@ -22,3 +22,12 @@ body {
 form {
   margin: 2rem 0 2rem 0;
 }
+
+form select,
+button,
+input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 0.75rem;
+}
