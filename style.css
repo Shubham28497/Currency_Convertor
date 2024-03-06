@@ -31,3 +31,9 @@ input {
   outline: none;
   border-radius: 0.75rem;
 }
+form input {
+  border: 1px solid lightgray;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+  height: 3rem;
+}
