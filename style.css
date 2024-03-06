@@ -37,3 +37,9 @@ form input {
   padding-left: 0.5rem;
   height: 3rem;
 }
+.dropdown{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
