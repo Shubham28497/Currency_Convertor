@@ -39,6 +39,6 @@ btn.addEventListener("click", (e) => {
     amtVal = 1;
     amount.value = "1";
   }
-  console.log(fromCurr.value, toCurr.value);
-  const Url = `${BASE_URL}/${fromCurr}/${toCurr}.json`;
+  console.log(fromCurr.value.toLowerCase(), toCurr.value.toLowerCase());
+  const Url = `${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
 });
