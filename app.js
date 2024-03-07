@@ -3,9 +3,8 @@ const BASE_URL =
 
 const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
-const from = document.querySelector(".from select");
-const to = document.querySelector(".to select");
-
+const fromCurr = document.querySelector(".from select");
+const toCurr = document.querySelector(".to select");
 
 for (let select of dropdowns) {
   for (currCode in countryList) {
@@ -40,5 +39,6 @@ btn.addEventListener("click", (e) => {
     amtVal = 1;
     amount.value = "1";
   }
+  console.log(fromCurr.value, toCurr.value);
   const Url = `${BASE_URL}/${fromCurr}/${toCurr}.json`;
 });
