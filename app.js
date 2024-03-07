@@ -5,6 +5,7 @@ const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
+const msg = document.querySelector(".msg");
 
 for (let select of dropdowns) {
   for (currCode in countryList) {
@@ -34,21 +35,27 @@ btn.addEventListener("click", async (e) => {
   e.preventDefault();
   let amount = document.querySelector(".amount input");
   let amtVal = amount.value;
-  //   console.log(amtVal);
   if (amtVal === "" || amtVal < 1) {
     amtVal = 1;
     amount.value = "1";
   }
-  //   console.log(fromCurr.value.toLowerCase(), toCurr.value.toLowerCase());
-  //   const Url = `${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
   const fromCurrency = fromCurr.value.toLowerCase();
   const toCurrency = toCurr.value.toLowerCase();
   const Url = `${BASE_URL}`;
-  //   const Url = `${BASE_URL}`;
   let response = await fetch(Url);
-  let data = await response.json();
-  console.log(data.eur);
-  let fdata = data.eur;
-  let rate = fdata[toCurrency];
-  console.log(rate);
+  let fdata = await response.json();
+  let data=fdata.eur
+
+
+  // Check if the response contains the necessary conversion rates
+  if (data[fromCurrency] && data[toCurrency]) {
+    let fromRate = data[fromCurrency];
+    let toRate = data[toCurrency];
+    let rate = toRate / fromRate; // Conversion rate from "from" to "to"
+    let famount = amtVal * rate;
+    console.log(famount);
+    msg.innerText = `${amtVal} ${fromCurr.value} = ${famount} ${toCurr.value}`;
+  } else {
+    console.error("Conversion rates not available for selected currencies");
+  }
 });
