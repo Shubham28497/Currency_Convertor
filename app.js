@@ -30,7 +30,7 @@ const updateFlag = (element) => {
   let img = element.parentElement.querySelector("img");
   img.src = newSrc;
 };
-btn.addEventListener("click", (e) => {
+btn.addEventListener("click", async (e) => {
   e.preventDefault();
   let amount = document.querySelector(".amount input");
   let amtVal = amount.value;
@@ -39,6 +39,16 @@ btn.addEventListener("click", (e) => {
     amtVal = 1;
     amount.value = "1";
   }
-  console.log(fromCurr.value.toLowerCase(), toCurr.value.toLowerCase());
-  const Url = `${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
+  //   console.log(fromCurr.value.toLowerCase(), toCurr.value.toLowerCase());
+  //   const Url = `${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
+  const fromCurrency = fromCurr.value.toLowerCase();
+  const toCurrency = toCurr.value.toLowerCase();
+  const Url = `${BASE_URL}`;
+  //   const Url = `${BASE_URL}`;
+  let response = await fetch(Url);
+  let data = await response.json();
+  console.log(data.eur);
+  let fdata = data.eur;
+  let rate = fdata[toCurrency];
+  console.log(rate);
 });
